@@ -76,3 +76,32 @@ Feature: Feature to test the Jala Academy
     And type multiple language
     And click on the single values
     Then type single language
+
+  @test-7
+  Scenario: Validating the collapes content page
+    When user click on the more
+    And click on the collapsible content
+    And click to the multiple collapes
+    And click all collapes in sequence
+    And click to close all collapes
+    And click first and close
+    And click second and close
+    And click third and close
+    And click fourth and close
+    Then click to the single collapes
+    And click first and close1
+    And click second and close2
+    And click third and close3
+    And click all three in sequence
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

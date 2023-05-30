@@ -310,7 +310,7 @@ public class WebsiteTesting {
 		 * In below line of code, I used different method by using .selectByVisibleText
 		 * 
 		 */
-		
+
 		//Code Here!
 		WebElement dropDownCountry = driver.findElement(By.id("CountryId"));
 		//create a new object
@@ -329,7 +329,7 @@ public class WebsiteTesting {
 			System.out.println("Country"+ dropDownCountry +"has not been detected in the list!");
 			//wait time .5s
 			Thread.sleep(500);
-			
+
 			//close the current window and quit the program
 			driver.close();
 			driver.quit();
@@ -400,7 +400,7 @@ public class WebsiteTesting {
 			System.out.println("City"+ dropDownCity +"has been found in the list!");
 			//wait time .9s
 			Thread.sleep(900);
-			
+
 		}else {
 			System.out.println("City"+ dropDownCity +"has not found in the list!");
 			//wait time .9s
@@ -601,7 +601,7 @@ public class WebsiteTesting {
 
 		String text = "Employee Details";
 
-		if(driver.getPageSource().contains("Employee")) {
+		if(driver.getPageSource().contains("Employee Details")) {
 			System.out.println("Text:"+ text + " is present.");
 			Thread.sleep(800); //wait time .8s
 		}else {
@@ -633,25 +633,22 @@ public class WebsiteTesting {
 		driver.findElement(By.id("Name")).sendKeys("Shivam");
 		//Wait time .9sec
 		Thread.sleep(900);
-		
+
 		//Click on the search button to get the content
 		driver.findElement(By.id("btnSearch")).click();
 		Thread.sleep(900); //wait time .9s
-		
+
 		//Click on the Delete Button
 		WebElement delBtn = driver.findElement(By.linkText("Delete"));
 		delBtn.click();
 		Thread.sleep(900);
-		
-		//Click on the Yes to Delete the Page
-		WebElement delBtnYes = driver.findElement(By.className("//button[@class='swal2-confirm'"));
-		delBtnYes.click();
-		Thread.sleep(900); //wait time .9s
-		
-		//Confirmation dialog to appear
-        driver.findElement(By.xpath("/html/body/div[6]/div/div[10]/button[1]")).click();
-       
+
+		//-------Delete Pop up window code-------
+
+
 	}
+
+
 	/*
 	 * 							{Test Case - 5}
 	 * 
@@ -1355,7 +1352,7 @@ public class WebsiteTesting {
 		Actions singleDropdown = new Actions(driver);
 
 		//--------- for loop start here! ------------
-		
+
 		//------------Select Python --------
 		for(int i=0; i<=7; i++) {
 			singleDropdown.sendKeys(single, Keys.ARROW_DOWN).perform();
@@ -1370,19 +1367,260 @@ public class WebsiteTesting {
 		}
 
 		//----------For loop end here!----------
-		
+
 		//wait time 1sec
 		Thread.sleep(1000);
-		
+
 		//close the current window
 		driver.close();
 		driver.quit();
 
+	}
+
+	/*			
+	 * 								{Test Case - 7}
+	 * 
+	 * \\Validating the Collapsible Content page//
+	 * 
+	 * List:
+	 * 
+	 * 	=> Login -- > more --> Collapsible Content -- > Multiple Collapse (Test all four) -- > Single Collapse
+	 * 
+	 * 	click on the on the more drop down
+	 * 	click on the collasible content 
+	 * 	click on the multiple collapes 
+	 * 	click on the all in sequence and close in sequence
+	 * 	click to open each time and close at the same time
+	 * 	click on the Single collapes
+	 * 	click on the first and close it
+	 * 	click on the second and close it
+	 * 	click on the third and close it
+	 * 	click one-by-one all three
+	 * 
+	 */
+
+	@And("click on the collapsible content")
+	public void click_on_the_collapsible_content() throws InterruptedException	{
+		System.out.println("Inside Step - click on the collapsible content Tab");
+
+		//Click on the Collapsible content
+		driver.findElement(By.partialLinkText("Collapsible Content")).click();
+		Thread.sleep(500); 	// wait time .5s
 
 	}
 
+	@And("click to the multiple collapes")
+	public void click_to_the_multiple_collapes() throws InterruptedException {
+		System.out.println("Inside Step - click on the multiple collapes option");
+
+		//Click on the multiple collapes
+		driver.findElement(By.linkText("Multiple Collapse")).click();
+		Thread.sleep(500); 	//wait time .5s
+
+	}
+
+	@And("click all collapes in sequence")
+	public void click_all_collapes_in_sequence() throws InterruptedException {
+		System.out.println("Inside Step - clcik all the collapes in sequence");
+
+		//Click all the collapes in sequence
+
+		//click on the first to open
+		WebElement first = driver.findElement(By.id("headingFour"));
+		first.click();
+		Thread.sleep(900); 	//wait time .9s
+
+		//Click on the second to open
+		WebElement second = driver.findElement(By.id("headingFive"));
+		second.click();
+		Thread.sleep(900); 	//wait time .9s
+
+		//Click on the third to open
+		WebElement third = driver.findElement(By.id("headingSix"));
+		third.click();
+		Thread.sleep(900); 	//wait time .9s
+
+		//Click on the fourth to open
+		WebElement fourth = driver.findElement(By.id("headingSeven"));
+		fourth.click();
+		Thread.sleep(900); 	//wait time .9s
+
+	}
+
+	@And("click to close all collapes")
+	public void click_to_close_all_collapes() throws InterruptedException {
+		System.out.println("Inside Step - click to close all the collapes one by one");
+
+		//Click all the collapes in sequence
+
+		//click on the first to close
+		WebElement first = driver.findElement(By.id("headingFour"));
+		first.click();
+		Thread.sleep(900); 	//wait time .9s
+
+		//Click on the second to close
+		WebElement second = driver.findElement(By.id("headingFive"));
+		second.click();
+		Thread.sleep(900); 	//wait time .9s
+
+		//Click on the third to close
+		WebElement third = driver.findElement(By.id("headingSix"));
+		third.click();
+		Thread.sleep(900); 	//wait time .9s
+
+		//Click on the fourth to close
+		WebElement fourth = driver.findElement(By.id("headingSeven"));
+		fourth.click();
+		Thread.sleep(900); 	//wait time .9s
+
+	}
+
+	@And("click first and close")
+	public void click_first_and_close() throws InterruptedException {
+		System.out.println("Inside Step - click first drop down and close it");
+
+		//Click on the first to open and close after bit of second
+		WebElement first = driver.findElement(By.id("headingFour"));
+		first.click(); //action perform to open 
+		Thread.sleep(900); 	//wait time .9s
+
+		first.click(); //action perform to close
+		Thread.sleep(300);
 
 
+	}
+
+	@And("click second and close")
+	public void click_second_and_close() throws InterruptedException {
+		System.out.println("Inside Step - click second drop down and close it");
+
+		//Click on the second to open and close after bit of second
+		WebElement second = driver.findElement(By.id("headingFive"));
+		second.click(); //action perform to open 
+		Thread.sleep(900); 	//wait time .9s
+
+		second.click(); //action perform to close
+		Thread.sleep(300);
+
+
+	}
+
+	@And("click third and close")
+	public void click_third_and_close() throws InterruptedException {
+		System.out.println("Inside Step - click third drop down and close it");
+
+		//Click on the third to open and close after bit of second
+		WebElement third = driver.findElement(By.id("headingSix"));
+		third.click(); //action perform to open 
+		Thread.sleep(900); 	//wait time .9s
+
+		third.click(); //action perform to close
+		Thread.sleep(300);
+
+	}
+
+	@And("click fourth and close")
+	public void click_fourth_and_close() throws InterruptedException {
+		System.out.println("Inside Step - click fourth drop down and close it");
+
+		//Click on the fourth to open and close after bit of second
+		WebElement fourth = driver.findElement(By.id("headingSeven"));
+		fourth.click(); //action perform to open 
+		Thread.sleep(900); 	//wait time .9s
+
+		fourth.click(); //action perform to close
+		Thread.sleep(300);
+
+	}
+
+	@Then("click to the single collapes")
+	public void click_to_the_single_collapes() throws InterruptedException {
+		System.out.println("Inside Step - click to the single collapes tab");
+
+		//click on the Single Collapes
+		driver.findElement(By.linkText("Single Collapse")).click();
+		Thread.sleep(500); 	//wait time .5s
+
+	}
+
+	@And("click first and close1")
+	public void click_first_and_close1() throws InterruptedException {
+		System.out.println("Inside Step - click first drop down and close it");
+
+		//Click on the first collapes
+		WebElement first_Single = driver.findElement(By.id("headingOne"));
+		first_Single.click(); //action perform to open
+		Thread.sleep(900); 	//wait time .9s
+
+		first_Single.click(); //action peform to close
+		Thread.sleep(300);
+
+
+	}
+
+	@And("click second and close2")
+	public void click_second_and_close2() throws InterruptedException {
+		System.out.println("Inside Step - click second drop down and close it");
+
+		//Click on the second collapes
+		WebElement second_Single = driver.findElement(By.id("headingTwo"));
+		second_Single.click(); //action perform to open
+		Thread.sleep(900); 	//wait time .9s
+
+		second_Single.click(); //action peform to close
+		Thread.sleep(300);
+
+	}
+
+	@And("click third and close3")
+	public void click_third_and_close3() throws InterruptedException {
+		System.out.println("Inside Step - click third drop down and close it");
+
+		//Click on the third collapes
+		WebElement third_Single = driver.findElement(By.id("headingThree"));
+		third_Single.click(); //action perform to open
+		Thread.sleep(900); 	//wait time .9s
+
+		third_Single.click(); //action peform to close
+		Thread.sleep(300);
+
+	}
+
+	@And("click all three in sequence")
+	public void click_all_three_in_sequence() throws InterruptedException	{
+		System.out.println("Inside Step - click all three one by one");
+
+		//Click on the first collapes
+		WebElement first_Single = driver.findElement(By.id("headingOne"));
+		first_Single.click(); //action perform to open
+		Thread.sleep(900); 	//wait time .9s
+
+		//Click on the second collapes
+		WebElement second_Single = driver.findElement(By.id("headingTwo"));
+		second_Single.click(); //action perform to open
+		Thread.sleep(900); 	//wait time .9s
+
+		//Click on the third collapes
+		WebElement third_Single = driver.findElement(By.id("headingThree"));
+		third_Single.click(); //action perform to open
+		Thread.sleep(900); 	//wait time .9s
+
+		/*
+		 	 String classAttribute = third_Single.getAttribute("class");
+
+		if (classAttribute.contains("collapsed")) {
+            System.out.println("First collapse element is collapsed");
+        } else {
+            System.out.println("First collapse element is expanded");
+        }
+		 
+		 */
+		
+		
+		//close the current window
+		driver.close();
+
+	}
 } // main
 
 
