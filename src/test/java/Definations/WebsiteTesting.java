@@ -168,6 +168,7 @@ public class WebsiteTesting {
 
 		//close the current window
 		driver.close();
+		driver.quit();
 
 	}
 
@@ -437,6 +438,7 @@ public class WebsiteTesting {
 
 		//close the current window
 		driver.close();
+		driver.quit();
 	}
 
 
@@ -645,7 +647,8 @@ public class WebsiteTesting {
 
 		//-------Delete Pop up window code-------
 
-
+		driver.close();
+		driver.quit();
 	}
 
 
@@ -806,6 +809,7 @@ public class WebsiteTesting {
 
 		//close the current WebDriver
 		driver.close();
+		driver.quit();
 
 	}
 
@@ -1186,6 +1190,7 @@ public class WebsiteTesting {
 
 		//close the current window
 		driver.close();
+		driver.quit();
 	}
 
 
@@ -1386,7 +1391,7 @@ public class WebsiteTesting {
 	 * 
 	 * 	=> Login -- > more --> Collapsible Content -- > Multiple Collapse (Test all four) -- > Single Collapse
 	 * 
-	 * 	click on the on the more drop down
+	 * 	click on the on the more drop down:
 	 * 	click on the collasible content 
 	 * 	click on the multiple collapes 
 	 * 	click on the all in sequence and close in sequence
@@ -1613,14 +1618,122 @@ public class WebsiteTesting {
         } else {
             System.out.println("First collapse element is expanded");
         }
-		 
+
 		 */
-		
-		
-		//close the current window
+
+		//close and quit the current window
 		driver.close();
+		driver.quit();
+	}
+
+	/*
+	 * 				{Test Case - 8}
+	 * 
+	 * \\Validating the image uploading page and Verifying its functionality//
+	 * 
+	 * 	List:
+	 * => Login -- > More -- > Image
+	 * click and open image page
+	 * upload the image file
+	 * if image file uploaded then display message
+	 * if image file not uploaded and error display then display error msg
+	 * 
+	 */
+
+	@When("user click on the more subtab")
+	public void user_clcik_on_the_more_subtab() throws InterruptedException {
+		
+	    driver.findElement(By.xpath("//*[@id=\"MenusDashboard\"]/li[3]/a")).click();
+	    Thread.sleep(700);
+	}
+	
+	@And("click on the Image sub-section")
+	public void click_on_the_image_sub_section() throws InterruptedException {
+		System.out.println("Inside Step - click on the image sub section");
+
+		//Click on the image option
+		driver.findElement(By.xpath("//*[@id=\"MenusDashboard\"]/li[3]/ul/li[5]/a")).click();
+		Thread.sleep(500); 	//sleep time .5s
+	}
+
+	@And("user upload the image file")
+	public void user_upload_the_image_file() throws InterruptedException {
+		System.out.println("Inside Step - Upload a image file!");
+		
+		//upload the Image file
+		WebElement fileUpload = driver.findElement(By.id("file"));
+		fileUpload.sendKeys("/Users/shivamgoyal/Desktop/utest quotes.png"); //image file path form desktop.
+		Thread.sleep(700); //sleep time .7s
+		
+		
+		//Check the file name
+		WebElement fileName = driver.findElement(By.id("fileName"));
+		//Check if the Image file name appears
+		// Get the value of the file name input field
+        String imageFileName = fileName.getAttribute("value");
+        // Print the file name
+        System.out.println("File Name: " + imageFileName);
+        Thread.sleep(300); //sleep .3s
 
 	}
+
+	@And("click to the upload button")
+	public void click_to_the_upload_button() throws InterruptedException {
+		System.out.println("Inside Step - click on the uplaod btn");
+	
+		//Xpath for upload Button
+		WebElement uploadBtn = driver.findElement(By.xpath("//*[@id=\"frmImages\"]/div/div/div[1]/div[3]/button"));
+		uploadBtn.click(); //action perform
+		
+		Thread.sleep(500); //sleep time .5s
+	}
+
+	@And("display message if file is uploaded")
+	public void display_message_if_file_is_uploaded() throws InterruptedException {
+		System.out.println("Inside Step - display a message if file upload");
+
+		//Display a message if image file get uploaded in the system.
+		WebElement fileVerify = driver.findElement(By.id("divImages"));
+		
+		//Check if the file is uploaded on the page
+		if(fileVerify.isDisplayed())
+		{
+		    // If the file is uploaded, retrieve the file name
+			String fileNameVerify = fileVerify.getAttribute("value");
+			System.out.println("Image File "+fileNameVerify +"is uploaded successfuly!");
+		} else {
+		    // If the file is not uploaded, display an error message
+			System.out.println("Image File is not uploaded!");
+		}
+		
+		Thread.sleep(500); //sleep time .5s
+
+	}
+
+	@Then("display message if error appear")
+	public void display_message_if_error_appear() throws InterruptedException {
+		System.out.println("Inside Step - display a message if image file is not get uploaded in the system and error message appear!");
+
+		//some error message element to check
+		WebElement errorMsg = driver.findElement(By.xpath("//*[@id=\"toast-container\"]"));
+		
+		// Check if the error message appears
+		if (errorMsg.isDisplayed()) {
+		    // If the error message is displayed, retrieve the error message text
+		    String errorMessage = errorMsg.getText();
+		    System.out.println("Error message: " + errorMessage);
+		}
+		
+		Thread.sleep(500); //sleep time .5s
+	
+		//close and quit the 
+		driver.close();
+		driver.quit();
+	}
+
+
+
+
 } // main
 
 

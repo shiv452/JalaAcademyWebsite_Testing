@@ -94,14 +94,11 @@ Feature: Feature to test the Jala Academy
     And click third and close3
     And click all three in sequence
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  @test-8
+  Scenario: Validating the image uploading page and Verifying its functionality
+    When user click on the more subtab
+    And click on the Image sub-section
+    And user upload the image file
+    And click to the upload button
+    And display message if file is uploaded
+    Then display message if error appear

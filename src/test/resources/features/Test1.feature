@@ -26,19 +26,3 @@ Feature: Title of your feature
     And user is type the username and password
     Then hit the login button
 
-  @tag1
-  Scenario: Validating the collapes content page
-    When user click on the more
-    And click on the collapsible content
-    And click to the multiple collapes
-    And click all collapes in sequence
-    And click to close all collapes
-    And click first and close
-    And click second and close
-    And click third and close
-    And click fourth and close
-    Then click to the single collapes
-    And click first and close1
-    And click second and close2
-    And click third and close3
-    And click all three in sequence
