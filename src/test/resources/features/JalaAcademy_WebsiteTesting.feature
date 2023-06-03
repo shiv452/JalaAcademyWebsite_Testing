@@ -102,3 +102,18 @@ Feature: Feature to test the Jala Academy
     And click to the upload button
     And display message if file is uploaded
     Then display message if error appear
+
+  @test-9
+  Scenario: Validating the slider functionality
+    When user click on the more
+    And click on the slider sub-sec
+    And slide the btn
+
+  @test-10
+  Scenario: Validating the tooltips button functionality
+    When user click on the more
+    And click on the tooltips sub-section btn
+    And print the message before clicking the btn
+    And click the button
+    And print the messagae after clicking the btn
+    And verify that button is clicked or not

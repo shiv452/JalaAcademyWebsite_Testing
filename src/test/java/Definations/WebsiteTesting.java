@@ -1642,11 +1642,11 @@ public class WebsiteTesting {
 
 	@When("user click on the more subtab")
 	public void user_clcik_on_the_more_subtab() throws InterruptedException {
-		
-	    driver.findElement(By.xpath("//*[@id=\"MenusDashboard\"]/li[3]/a")).click();
-	    Thread.sleep(700);
+
+		driver.findElement(By.xpath("//*[@id=\"MenusDashboard\"]/li[3]/a")).click();
+		Thread.sleep(700);
 	}
-	
+
 	@And("click on the Image sub-section")
 	public void click_on_the_image_sub_section() throws InterruptedException {
 		System.out.println("Inside Step - click on the image sub section");
@@ -1659,32 +1659,32 @@ public class WebsiteTesting {
 	@And("user upload the image file")
 	public void user_upload_the_image_file() throws InterruptedException {
 		System.out.println("Inside Step - Upload a image file!");
-		
+
 		//upload the Image file
 		WebElement fileUpload = driver.findElement(By.id("file"));
 		fileUpload.sendKeys("/Users/shivamgoyal/Desktop/utest quotes.png"); //image file path form desktop.
 		Thread.sleep(700); //sleep time .7s
-		
-		
+
+
 		//Check the file name
 		WebElement fileName = driver.findElement(By.id("fileName"));
 		//Check if the Image file name appears
 		// Get the value of the file name input field
-        String imageFileName = fileName.getAttribute("value");
-        // Print the file name
-        System.out.println("File Name: " + imageFileName);
-        Thread.sleep(300); //sleep .3s
+		String imageFileName = fileName.getAttribute("value");
+		// Print the file name
+		System.out.println("File Name: " + imageFileName);
+		Thread.sleep(300); //sleep .3s
 
 	}
 
 	@And("click to the upload button")
 	public void click_to_the_upload_button() throws InterruptedException {
 		System.out.println("Inside Step - click on the uplaod btn");
-	
+
 		//Xpath for upload Button
 		WebElement uploadBtn = driver.findElement(By.xpath("//*[@id=\"frmImages\"]/div/div/div[1]/div[3]/button"));
 		uploadBtn.click(); //action perform
-		
+
 		Thread.sleep(500); //sleep time .5s
 	}
 
@@ -1694,18 +1694,18 @@ public class WebsiteTesting {
 
 		//Display a message if image file get uploaded in the system.
 		WebElement fileVerify = driver.findElement(By.id("divImages"));
-		
+
 		//Check if the file is uploaded on the page
 		if(fileVerify.isDisplayed())
 		{
-		    // If the file is uploaded, retrieve the file name
+			// If the file is uploaded, retrieve the file name
 			String fileNameVerify = fileVerify.getAttribute("value");
 			System.out.println("Image File "+fileNameVerify +"is uploaded successfuly!");
 		} else {
-		    // If the file is not uploaded, display an error message
+			// If the file is not uploaded, display an error message
 			System.out.println("Image File is not uploaded!");
 		}
-		
+
 		Thread.sleep(500); //sleep time .5s
 
 	}
@@ -1716,26 +1716,181 @@ public class WebsiteTesting {
 
 		//some error message element to check
 		WebElement errorMsg = driver.findElement(By.xpath("//*[@id=\"toast-container\"]"));
-		
+
 		// Check if the error message appears
 		if (errorMsg.isDisplayed()) {
-		    // If the error message is displayed, retrieve the error message text
-		    String errorMessage = errorMsg.getText();
-		    System.out.println("Error message: " + errorMessage);
+			// If the error message is displayed, retrieve the error message text
+			String errorMessage = errorMsg.getText();
+			System.out.println("Error message: " + errorMessage);
 		}
-		
+
 		Thread.sleep(500); //sleep time .5s
-	
+
 		//close and quit the 
 		driver.close();
 		driver.quit();
 	}
 
 
+	/*
+	 * 				{Test Case - 10}
+	 * List: 
+	 * 
+	 * 	=> Login -- > More -- > Slider
+	 * 
+	 * Click on the more tab
+	 * Click on the slider sub section
+	 * Slide the bar until it's desire point
+	 * 
+	 */
 
+
+	@And("click on the slider sub-sec")
+	public void click_on_the_slider_sub_sec() {
+		System.out.println("Inside Step - click on the sub-sec slider");
+
+		//Click on the sub section - Slide
+		WebElement slideBtn = driver.findElement(By.xpath("//*[@id=\"MenusDashboard\"]/li[3]/ul/li[6]/a"));
+		slideBtn.click();
+	}
+
+	@And("slide the btn")
+	public void slide_the_btn() {
+		System.out.println("Inside Step - testing the slider bar");
+
+		Actions actions = new Actions(driver);
+
+		// Find the slider elements
+		WebElement slider = driver.findElement(By.cssSelector(".slider-handle.min-slider-handle"));
+
+
+		// Slide the bar towards the positive X side
+		actions.clickAndHold(slider).moveByOffset(100, 0).release().perform();
+	}
+
+
+	/*
+	 * 			{Test Case - 11}
+	 * List: 
+	 * 
+	 * => Login -- > more -- > Tooltips sub section tab
+	 *  
+	 *  Click on the more tab
+	 *  Click on the tooltips Button and check it's funcitonality
+	 * 
+	 */
+
+
+
+	@And("click on the tooltips sub-section btn")
+	public void click_on_the_tooltips_sub_section_btn() throws InterruptedException {
+		System.out.println("Inside Step - click on the tooltips btn");
+
+		//XPATH for tooltips btn
+		driver.findElement(By.xpath("//*[@id=\"MenusDashboard\"]/li[3]/ul/li[7]/a")).click();
+		Thread.sleep(500); //waiting time .5s
+
+
+	}
+
+	@And("print the message before clicking the btn")
+	public void print_the_message_before_clicking_the_btn() {
+		System.out.println("Inside Step - print the msg that is store before clicking the btn");
+
+		// Find the button element
+		WebElement button = driver.findElement(By.id("btnTooltip"));
+
+		// Get the tooltip message before clicking the button
+		String tooltipBeforeClick = button.getAttribute("data-original-title");
+		System.out.println("Tooltip before clicking the button: " + tooltipBeforeClick);
+
+		// Click the button
+		button.click();
+
+	}
+
+	@And("click the button")
+	public void click_the_button() throws InterruptedException {
+		System.out.println("Inside Step - click the tooltips btn");
+
+		// Find the button element
+		WebElement button = driver.findElement(By.id("btnTooltip"));
+
+		// Click the button
+		button.click();
+
+		//waiting time 6s
+		Thread.sleep(600); 
+	}
+
+	@And("print the messagae after clicking the btn")
+	public void print_the_messagae_after_clicking_the_btn() throws InterruptedException {
+		System.out.println("Inside Step - print the msg that is store after clicking the tooltips btn");
+
+		// Find the button element
+		WebElement button = driver.findElement(By.id("btnTooltip"));
+
+		// Get the tooltip message after clicking the button
+		String tooltipAfterClick = button.getAttribute("tooltip-inner");
+		System.out.println("Tooltip after clicking the button: " + tooltipAfterClick);              
+		//waiting time 9s
+		Thread.sleep(900); 
+
+	}
+
+	@And("verify that button is clicked or not")
+	public void verify_that_button_is_clicked_or_not() {
+		System.out.println("Inside Step - Verify tooltips btn is clicked or not");
+
+		// Find the button element
+		WebElement button = driver.findElement(By.id("btnTooltip"));
+		// Verify if the button is clicked
+		boolean isButtonClicked = Boolean.parseBoolean(button.getAttribute("aria-describedby"));
+		System.out.println("Is the button clicked? :- " + isButtonClicked);
+
+		// Close the browser
+		driver.quit();
+	}
+
+
+	/*
+	 * 			{Test Case - 12}
+	 * => Logoin -- > more -- > Popup
+	 * 
+	 * List: 
+	 * 
+	 * Click on the more tab
+	 * Click on the Popups sub section
+	 * Click on the First starting three button
+	 * Click on the Second three button
+	 * Click on the third three button, and checks all buttons' functionality
+	 * 
+	 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
 
 } // main
-
 
 
 
