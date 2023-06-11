@@ -1,5 +1,6 @@
 package Definations;
 
+import org.jsoup.Jsoup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -1640,8 +1641,8 @@ public class WebsiteTesting {
 	 * 
 	 */
 
-	@When("user click on the more subtab")
-	public void user_clcik_on_the_more_subtab() throws InterruptedException {
+	@When("user click on the moretab")
+	public void user_click_on_the_moretab() throws InterruptedException {
 
 		driver.findElement(By.xpath("//*[@id=\"MenusDashboard\"]/li[3]/a")).click();
 		Thread.sleep(700);
@@ -1854,7 +1855,8 @@ public class WebsiteTesting {
 
 
 	/*
-	 * 			{Test Case - 12}
+	 * 								{Test Case - 12}
+	 * 
 	 * => Logoin -- > more -- > Popup
 	 * 
 	 * List: 
@@ -1867,28 +1869,131 @@ public class WebsiteTesting {
 	 * 
 	 */
 
+	@When("click on the popups sub-tab")
+	public void click_on_the_popups_sub_tab() throws InterruptedException {
+		System.out.println("Inside Step - click on the popups sub tab");
+
+		// Popup - 1 
+		//Xpath for the popups sub-section
+		WebElement popupsBtn = driver.findElement(By.xpath("//*[@id=\"MenusDashboard\"]/li[3]/ul/li[8]/a"));
+		popupsBtn.click();
+
+		//waiting time .5s
+		Thread.sleep(500);
+
+
+	}
+
+	@When("Check the first three popups and print the message")
+	public void check_the_first_three_popups_and_print_the_message() throws InterruptedException {
+		System.out.println("Inside Step - Check the first three popups and print the message");
+
+		//Testing First Three Button
+
+		//PopUps One Button
+		WebElement popupsOneBtn = driver.findElement(By.id("btn-one"));
+		popupsOneBtn.click();
+
+		//wait time 1s
+		Thread.sleep(1000);
+
+		// The HTML snippet with the <img> tag
+		String html = "<img class=\"lnXdpd\" alt=\"Google\" height=\"92\" src=\"/images/branding/googlelogo/2x/googlelogo_light_color_272x92dp.png\" srcset=\"/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png 1x, /images/branding/googlelogo/2x/googlelogo_light_color_272x92dp.png 2x\" width=\"272\" data-atf=\"1\" data-frt=\"0\">";
+
+		// Parse the HTML snippet
+		org.jsoup.nodes.Document doc = Jsoup.parse(html);
+
+		// Find the <img> tag
+		org.jsoup.nodes.Element imgTag = doc.select("img").first();
+
+		// Get the "src" attribute value
+		String imageUrl = imgTag.attr("src");
+
+		// Print the image URL
+		System.out.println("Image URL: " + imageUrl);
+		//-----End first PopUps Button-----
+
+
+		//PopUps Two Button
+		WebElement popupsTwoBtn = driver.findElement(By.id("btn-two"));
+		popupsTwoBtn.click();
+
+		// Find the <h1> element by its class name
+		boolean headerFound = driver.findElements(By.className("display-6")).size() > 0;
+
+		// Print the appropriate message based on whether the header is found or not
+		if (headerFound) {
+			System.out.println("Header is found!");
+		} else {
+			System.out.println("Header is not found!");
+
+			driver.quit();
+		}
+		//----------End popUps two Button-----------        
+
+
+		//PopUps Three Button
+		WebElement popupsThreeBtn = driver.findElement(By.id("btn-three"));
+		popupsThreeBtn.click();
+
+		//wait time 1s
+		Thread.sleep(1000);
+
+		// Find the <h1> element by its inline style
+		boolean textFound = driver.findElements(By.cssSelector("h1[style='font-size:25px;']")).size() > 0;
+
+		// Retrieve the text of the header if found
+		if (textFound) {
+			String headerText = driver.findElement(By.cssSelector("h1[style='font-size:25px;']")).getText();
+			System.out.println("Header text: " + headerText);
+		} else {
+			System.out.println("Header not found!");
+			// Close the browser and exit the page
+			driver.quit();
+		}
+	
+	}
+	//---------------End Three Button---------
+
+
+
+	@When("Check the second three popups and print the message")
+	public void check_the_second_three_popups_and_print_the_message() {
+		System.out.println("Inside Step - Check the second three popups and print the message");
+
+		//Testing the Second three
+
+		//Popups second first Button
+		WebElement popups_Duplicate = driver.findElement(By.id("btn-four"));
+		popups_Duplicate.click(); //perform the action
+
+		boolean findText = driver.findElement(By.id("what-is-java")).isDisplayed();
+
+		if(findText) {
+			String hText = driver.findElement(By.id("what-is-java")).getText();
+			System.out.println("Head Text: " + hText);
+		} else {
+			System.out.println("Head is not found!");
+			//close the browser and exit the page
+			driver.quit();
+		}
+
+		//pop Ups 2nd second button
+		WebElement Duplicate_Tab = driver.findElement(By.id("btn-five"));
+		Duplicate_Tab.click();
 
 
 
 
+	}
+
+	@When("Check the third three popups and print the message")
+	public void check_the_third_three_popups_and_print_the_message() {
+		System.out.println("Inside Step - Check the third three popups and print the message");
+
+	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
 
 } // main
 

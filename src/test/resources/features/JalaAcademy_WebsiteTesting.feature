@@ -96,7 +96,7 @@ Feature: Feature to test the Jala Academy
 
   @test-8
   Scenario: Validating the image uploading page and Verifying its functionality
-    When user click on the more subtab
+    When user click on the moretab
     And click on the Image sub-section
     And user upload the image file
     And click to the upload button
@@ -117,3 +117,11 @@ Feature: Feature to test the Jala Academy
     And click the button
     And print the messagae after clicking the btn
     And verify that button is clicked or not
+
+  @test-11
+  Scenario: Validating the popups tab and its functionality
+    When user click on the more
+    And click on the popups sub-tab
+    And Check the first three popups and print the message
+    And Check the second three popups and print the message
+    And Check the third three popups and print the message
